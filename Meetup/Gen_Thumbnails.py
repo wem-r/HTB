@@ -20,11 +20,10 @@ def get_machine_avatar(machine, machines):
         if machines[i]['name'].lower() == machine.lower():
             print(f'Bingo : {machines[i]["name"]} avatar is {machines[i]["avatar"]}')
             return machines[i]["avatar"]
-            #break
+
     else:
         print(f"Error, machine {machine} not found in retired machines. EXITING")
         raise SystemExit
-        return False
 
 
 #-------------------------------------------------------------
