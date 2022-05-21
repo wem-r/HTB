@@ -5,7 +5,7 @@ import sys
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-n', '--number', dest='num_meetup', help="Numéro du Meetep. Exemple: 0x09", type=str, required=True)
+parser.add_argument('-n', '--number', dest='num_meetup', help="Numero du Meetup. Exemple: 0x09", type=str, required=True)
 parser.add_argument('-m1', '--machine1', dest='machine1', help="Nom de la Machine 1", type=str, nargs='?')
 parser.add_argument('-m2', '--machine2', dest='machine2', help="Nom de la Machine 2", type=str, nargs='?')
 parser.add_argument('-m3', '--machine3', dest='machine3', help="Nom de la Machine 3", type=str, nargs='?')
