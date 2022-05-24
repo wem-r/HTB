@@ -13,7 +13,8 @@ Go to https://app.hackthebox.com/profile/settings and <kbd>Create App Token</kbd
 
 ## Requirement
 
-To keep the HTB color theme, I use the [official style guide](https://www.hackthebox.com/docs/Hack_The_Box_Brand_Assets_Guide.pdf) and used the font `Zeitung Micro Pro` (<sup>google is your friend</sup>).
+- Create a `token.txt` with your App Token in it
+- To keep the HTB color theme, I use the [official style guide](https://www.hackthebox.com/docs/Hack_The_Box_Brand_Assets_Guide.pdf) and used the font `Zeitung Micro Pro` (<sup>google is your friend</sup>).
 
 ---
 
