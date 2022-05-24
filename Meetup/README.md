@@ -9,6 +9,11 @@ Script that is using the [HackTheBox API](https://documenter.getpostman.com/view
 To communicate with the API v4, you need an **App Token**.  
 Go to https://app.hackthebox.com/profile/settings and <kbd>Create App Token</kbd> (<small>This does not work on the old interface, you need to use the new one</small>)
 
+---
+
+## Requirement
+
+To keep the HTB color theme, I use the [official style guide](https://www.hackthebox.com/docs/Hack_The_Box_Brand_Assets_Guide.pdf) and used the font `Zeitung Micro Pro` (<sup>google is your friend</sup>).
 
 ---
 
