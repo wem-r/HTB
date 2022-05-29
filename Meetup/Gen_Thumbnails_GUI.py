@@ -34,11 +34,13 @@ class sim(Frame):
         # Function to retrieve avatar of a specific machine
         def get_machine_avatar(machine, machines):
             for i in range(0, len(machines)):
-                if machines[i]['name']:
+                if machines[i]['name'].lower() == machine.lower():
+                    # print(f'Bingo : {machines[i]["name"]} avatar is {machines[i]["avatar"]}')
                     return machines[i]["avatar"]
             else:
-                print(f"Error, machine {machine} not found in retired machines. EXITING")
-                raise SystemExit
+                outbot.delete(1.0, 'end')
+                # outbot.insert('end', 'Error, machine "'+machine+'" not found'+'\n')
+                # raise SystemExit
         #-------------------------------------------------------------
         # Import HTB token
         with open('token.txt', 'r') as t:
@@ -91,23 +93,23 @@ class sim(Frame):
                 im3 = Image.open(requests.get(base_url + m3_avatar, headers=headers, stream=True).raw)
             
             outbot.delete(1.0, 'end')
-           
-            if MeetupN.get(1.0, "end-1c"):
+            
+            if MeetupNumber:
                 outbot.insert('end', 'Title : '+meetup+'\n')
             else:
                 outbot.insert('end', '[x] You need a Meetup Number'+'\n')
-            if MachineList1.index("end") and not MachineList2.index("end") and not MachineList3.index("end"):
+            if m1List and not m2List and not m3List:
                 outbot.insert('end', "Machine 1 : "+m1List+'\n')
                 draw.text(((width-w1)/2, 900), machine1, (255,255,255), font=font2)
                 background.paste(im1, (int((width-300)/2), 570), im1)
-            if MachineList1.index("end") and MachineList2.index("end") and not MachineList3.index("end"):
+            if m1List and m2List and not m3List:
                 outbot.insert('end', "Machine 1 : "+m1List+'\n')
                 outbot.insert('end', "Machine 2 : "+m2List+'\n')
                 draw.text((800 - (w1/2), 900), machine1, (255,255,255), font=font2)
                 background.paste(im1, (650, 570), im1)
                 draw.text((1760 - (w2/2), 900), machine2, (255,255,255), font=font2)
                 background.paste(im2, (1605, 570), im2)
-            if MachineList1.index("end") and MachineList2.index("end") and MachineList3.index("end"):
+            if m1List and m2List and m3List:
                 outbot.insert('end', "Machine 1 : "+m1List+'\n')
                 outbot.insert('end', "Machine 2 : "+m2List+'\n')
                 outbot.insert('end', "Machine 3 : "+m3List+'\n')
@@ -117,7 +119,8 @@ class sim(Frame):
                 background.paste(im2, (1130, 500), im2)
                 draw.text((1995 - (w3/2), 830), machine3, (255,255,255), font=font2)
                 background.paste(im3, (1845, 500), im3)
-            background.save(f'{MeetupN.get(1.0, "end-1c")}.jpg')
+            background.save(f'{MeetupNumber}.png')
+
         #-------------------------------------------------------------
         self.button1 = Button(root, font=myfont, bg='#dbdbdb', text="Generate", command=GenImage, height=1, width=28, borderwidth=0, relief=SOLID)
         self.button1.place(x=15, y=170)
