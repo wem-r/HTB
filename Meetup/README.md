@@ -23,6 +23,8 @@ Go to https://app.hackthebox.com/profile/settings and <kbd>Create App Token</kbd
 
 - Set the Meetup number/name with :
     - `-n` / `--number` :
+- Set the date of the Meetup with :
+    - `-d` / `--date` :
 - Set the differents machines names with
     - `-m1` / `--machine1`
     - `-m2` / `--machine2`
