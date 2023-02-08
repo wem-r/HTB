@@ -33,5 +33,5 @@ Go to https://app.hackthebox.com/profile/settings and <kbd>Create App Token</kbd
 
 Exemple: 
 ```bash
-python3 Gen_Thumbnails.py -n 0x0f -m1 Optimum -m2 Search
+python3 Gen_Thumbnails.py -n 0x0f -d "January 19 2038"  -m1 Optimum -m2 Search
 ```
