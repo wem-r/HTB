@@ -28,10 +28,13 @@ with open('token.txt', 'r') as t:
 
 # Get retired machine list
 base_url = "https://www.hackthebox.com"
-api_url = "/api/v4/machine/list/retired"
-headers = {'user-agent': 'HTB-API', 'Authorization': 'Bearer ' + token}
+api_url = "/api/v4/machine/list/retired/paginated?per_page=50"
+headers = {
+    "user-agent": "HTB-API",
+    "Content-Type": "application/json"}
+    "Authorization": "Bearer " + token}
 
-machines = requests.get(base_url + api_url, headers=headers, allow_redirects=True).json()['info']
+machines = requests.get(base_url + api_url, headers=headers, allow_redirects=True).json()['data']
 
 #-------------------------------------------------------------
 # Implementation logic : check if machines exists first !
