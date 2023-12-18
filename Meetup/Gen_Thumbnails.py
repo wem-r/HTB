@@ -27,11 +27,11 @@ with open('token.txt', 'r') as t:
     token = t.read().strip('\n')
 
 # Get retired machine list
-base_url = "https://www.hackthebox.com"
+base_url = "https://labs.hackthebox.com"
 api_url = "/api/v4/machine/list/retired/paginated?per_page=50"
 headers = {
     "user-agent": "HTB-API",
-    "Content-Type": "application/json"}
+    "Content-Type": "application/json",
     "Authorization": "Bearer " + token}
 
 machines = requests.get(base_url + api_url, headers=headers, allow_redirects=True).json()['data']
