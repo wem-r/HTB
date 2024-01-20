@@ -133,8 +133,8 @@ if len(sys.argv)==7:
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
     # 300 is the width of the box image, spacer is 50
     draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
-    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 115 ), os1)
+    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 / 2 )- 64)
+    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 114 ), os1)
 
 
 if len(sys.argv)==9:
@@ -145,41 +145,37 @@ if len(sys.argv)==9:
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
     # 300 is the width of the box image, spacer is 50
     draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
-    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 115 ), os1)
+    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 114 ), os1)
     # Box 2, double the offset to achieve asymetry
     offset = offset * 2
     background.paste(im2, (int(rooster_offset + offset), logo_y + spacer + 300), im2)
     # 300 is the width of the box image, spacer is 50
     draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80 + spacer + 300), machine2, (255,255,255), font=font2)
-    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os2, (int(rooster_offset + offset + 300 + spacer + w2 + spacer), logo_y + 115 + spacer + 300 ), os2)
+    background.paste(os2, (int(rooster_offset + offset + 300 + spacer + w2 + spacer), logo_y + 114 + spacer + 300 ), os2)
 
 
 if len(sys.argv)==11:
     spacer = 50
     offset = int(400 - (w1 / 2) - spacer)
     # Box 1 , logo_y will need to be tweak to achieve vertical centering (1440 - (300 + 50 + 300 + 50 + 300 ))/ 2 = 
-    logo_y = 320 # 1440 - ( 3 * 300 ) / 2 = 
+    logo_y = 370 # 1440 - ( 700) / 2 = 
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
     # 300 is the width of the box image, spacer is 50
-    draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
-    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 115 ), os1)
-    # Box 2, double the offset to achieve asymetry
+    background.paste(os1, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 ), os1)
+    draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
+    
+    # Box 2, triple the offset to achieve asymetry
     offset = offset * 3
-    background.paste(im2, (int(rooster_offset + offset), logo_y + 25 + 300), im2)
+    background.paste(im2, (int(rooster_offset + offset), logo_y + 250), im2)
     # 300 is the width of the box image, spacer is 50
-    draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80 + 25 + 300), machine2, (255,255,255), font=font2)
-    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os2, (int(rooster_offset + offset + 300 + spacer + w2 + spacer), logo_y + 115 + 25 + 300 ), os2)
-    # Box 3, double the offset to achieve asymetry
-    offset = offset * 2 / 3
-    background.paste(im3, (int(rooster_offset + offset), logo_y + spacer + 600), im3)
+    background.paste(os2, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 + 250 ), os2)
+    draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80 + 250), machine2, (255,255,255), font=font2)
+    # Box 3, tweak the offset to achieve asymetry
+    offset = offset / 3
+    background.paste(im3, (int(rooster_offset + offset), logo_y + 500), im3)
     # 300 is the width of the box image, spacer is 50
-    draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80 + spacer  + 600), machine3, (255,255,255), font=font2)
-    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os3, (int(rooster_offset + offset + 300 + spacer + w3 + spacer), logo_y + 115 + spacer + 600 ), os3)
+    background.paste(os3, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 + 500 ), os3)
+    draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80 + 500), machine3, (255,255,255), font=font2)
 
 #-------------------------------------------------------------
 background.save(f'{args.num_meetup}.png')
