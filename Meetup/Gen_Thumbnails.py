@@ -97,7 +97,8 @@ text_y = 525
 
 if len(sys.argv)==7:
     draw.text(((width + rooster_offset - w1)/2, logo_y), machine1, (255,255,255), font=font2)
-    background.paste(im1, (int((width + rooster_offset - 300)/2), text_y), im1)
+    # Width - rooster offset - 300 = 1510. Split in two parts = 755
+    background.paste(im1, ((rooster_offset + 755), text_y), im1)
 
 if len(sys.argv)==9:
     # A machine logo is 300 x 300, quick maths : width - rooster_offset - (2 * 300 ) = 1210. So we need to split this in three : 400, 410, 400
