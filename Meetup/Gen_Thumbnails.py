@@ -62,20 +62,22 @@ if args.machine1 != None:
 # Base Image & Meetup Title
 width = 2560
 height = 1440
-background = Image.open('background.png')
+background = Image.open('background-v2.png')
 draw = ImageDraw.Draw(background)
 
-font1 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 170) # Title
+font1 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 150) # Title
 font2 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 80) # Box Name
 font3 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 65) # Date
 
 meetup = f"Meetup HTB France {args.num_meetup}"
 w, h = draw.textsize(meetup, font=font1)
-draw.text(((width-w)/2, 80), meetup, (20,29,44), font=font1)
+# 500 pîxels from the left and 50 from the top, with font1 reduced to 150
+draw.text((500, 50), meetup, fill="white", font=font1)
 
 date = f"{args.date_meetup}"
 w1, h1 = draw.textsize(date, font=font3)
-draw.text(((width-w1)/2, 350), date, (255,255,255), font=font3)
+# Text set in the remaining 2/3 of the image, to center in the "blank space" between the rooster and right
+draw.text(((width+765-w1)/2, 1275), date, fill="white", font=font3)
 
 #-------------------------------------------------------------
 # Box
@@ -89,23 +91,29 @@ if args.machine3 != None:
     machine3 = args.machine3;w3, h = draw.textsize(machine3, font=font2)
     im3 = Image.open(requests.get(base_url + m3_avatar, headers=headers, stream=True).raw)
 
+rooster_offset = 765
+logo_y = 825
+text_y = 525
+
 if len(sys.argv)==7:
-    draw.text(((width-w1)/2, 925), machine1, (255,255,255), font=font2)
-    background.paste(im1, (int((width-300)/2), 625), im1)
+    draw.text(((width + rooster_offset - w1)/2, logo_y), machine1, (255,255,255), font=font2)
+    background.paste(im1, (int((width + rooster_offset - 300)/2), text_y), im1)
 
 if len(sys.argv)==9:
-    draw.text((800 - (w1/2), 925), machine1, (255,255,255), font=font2)
-    background.paste(im1, (650, 625), im1)
-    draw.text((1760 - (w2/2), 925), machine2, (255,255,255), font=font2)
-    background.paste(im2, (1605, 625), im2)
+    # A machine logo is 300 x 300, quick maths : width - rooster_offset - (2 * 300 ) = 1210. So we need to split this in three : 400, 410, 400
+    draw.text((rooster_offset + 400 + ((300 - w1)/2) , logo_y), machine1, (255,255,255), font=font2)
+    background.paste(im1, ((rooster_offset + 400), text_y), im1)
+    draw.text(((width - 700 + + ((300 - w2)/2)), logo_y), machine2, (255,255,255), font=font2)
+    # 700 because we need one third of 1210 , rounded to 400, + 300
+    background.paste(im2, ((width - 700), text_y), im2)
 
 if len(sys.argv)==11:
-    draw.text((565 - (w1/2), 925), machine1, (255,255,255), font=font2)
-    background.paste(im1, (415, 625), im1)
-    draw.text((1280 - (w2/2), 925), machine2, (255,255,255), font=font2)
-    background.paste(im2, (1130, 625), im2)
-    draw.text((1995 - (w3/2), 925), machine3, (255,255,255), font=font2)
-    background.paste(im3, (1845, 625), im3)
+    draw.text((565 - (w1/2), logo_y), machine1, (255,255,255), font=font2)
+    background.paste(im1, (415, text_y), im1)
+    draw.text((1280 - (w2/2), logo_y), machine2, (255,255,255), font=font2)
+    background.paste(im2, (1130, text_y), im2)
+    draw.text((1995 - (w3/2), logo_y), machine3, (255,255,255), font=font2)
+    background.paste(im3, (1845, text_y), im3)
 
 #-------------------------------------------------------------
 background.save(f'{args.num_meetup}.png')
