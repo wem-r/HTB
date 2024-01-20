@@ -157,23 +157,22 @@ if len(sys.argv)==9:
 if len(sys.argv)==11:
     spacer = 50
     offset = int(400 - (w1 / 2) - spacer)
-    # Box 1 , logo_y will need to be tweak to achieve vertical centering (1440 - (300 + 50 + 300 + 50 + 300 ))/ 2 = 
-    logo_y = 370 # 1440 - ( 700) / 2 = 
+    # Box 1 , logo_y will need to be tweak to achieve vertical centering 
+    logo_y = 370 # 1440 - ( 700) / 2 # 700 because we'll overlap logos vertically but on different x axis
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
     # 300 is the width of the box image, spacer is 50
     background.paste(os1, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 ), os1)
     draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
-    
     # Box 2, triple the offset to achieve asymetry
     offset = offset * 3
     background.paste(im2, (int(rooster_offset + offset), logo_y + 250), im2)
-    # 300 is the width of the box image, spacer is 50
+    # 300 is the width of the box image, spacer is 50, 250 instead of 300 to reduce the spreading and pack a bit
     background.paste(os2, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 + 250 ), os2)
     draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80 + 250), machine2, (255,255,255), font=font2)
     # Box 3, tweak the offset to achieve asymetry
     offset = offset / 3
     background.paste(im3, (int(rooster_offset + offset), logo_y + 500), im3)
-    # 300 is the width of the box image, spacer is 50
+    # 300 is the width of the box image, spacer is 50, 250 instead of 300 to reduce the spreading and pack a bit
     background.paste(os3, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 + 500 ), os3)
     draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80 + 500), machine3, (255,255,255), font=font2)
 
