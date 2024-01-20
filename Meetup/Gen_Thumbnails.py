@@ -103,6 +103,7 @@ if args.machine2 != None:
     machine2 = args.machine2
     w2, h2 = draw.textsize(machine2, font=font2)
     im2 = Image.open(requests.get(base_url + m2_avatar, headers=headers, stream=True).raw)
+    os2 = Image.open(os_picture(m2_os))
 if args.machine3 != None:
     machine3 = args.machine3
     w3, h3 = draw.textsize(machine3, font=font2)
@@ -115,28 +116,37 @@ if args.machine3 != None:
 # Falafel, Linux, hard
 
 rooster_offset = 765
-logo_y = 525
-text_y = logo_y + 80
 
 if len(sys.argv)==7:
     # Width - rooster offset - 300 = 1510. Split in two parts = 755
     spacer = 50
+    logo_y = 570 # (1440 - 300) / 2 = 570
     offset = int(755 - (w1 / 2) - spacer)
-    # Base for y for 1 box : 605 for text , 525 for img
-    background.paste(im1, ((rooster_offset + offset), 525), im1)
+    background.paste(im1, ((rooster_offset + offset), logo_y), im1)
     # 300 is the width of the box image, spacer is 50
-    draw.text(((rooster_offset + offset + 300 + spacer), 605), machine1, (255,255,255), font=font2)
+    draw.text(((rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
     # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
-    background.paste(os1, ((rooster_offset + offset + 300 + spacer + w1 + spacer), 630), os1)
+    background.paste(os1, ((rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 115 ), os1)
 
 
 if len(sys.argv)==9:
-    # A machine logo is 300 x 300, quick maths : width - rooster_offset - (2 * 300 ) = 1210. So we need to split this in three : 400, 410, 400
-    draw.text((rooster_offset + 400 + ((300 - w1)/2) , text_y), machine1, (255,255,255), font=font2)
-    background.paste(im1, ((rooster_offset + 400), logo_y), im1)
-    draw.text(((width - 700 + + ((300 - w2)/2)), text_y), machine2, (255,255,255), font=font2)
-    # 700 because we need one third of 1210 , rounded to 400, + 300
-    background.paste(im2, ((width - 700), logo_y), im2)
+    spacer = 50
+    offset = int(400 - (w1 / 2) - spacer)
+    # Box 1 , logo_y will need to be tweak to achieve vertical centering (1440 - (300 + 50 + 300 ))/ 2 = 
+    logo_y = 395
+    background.paste(im1, ((rooster_offset + offset), logo_y), im1)
+    # 300 is the width of the box image, spacer is 50
+    draw.text(((rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
+    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
+    background.paste(os1, ((rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 115 ), os1)
+    # Box 2, double the offset to achieve asymetry
+    offset = offset * 2
+    background.paste(im2, ((rooster_offset + offset), logo_y + spacer + 300), im2)
+    # 300 is the width of the box image, spacer is 50
+    draw.text(((rooster_offset + offset + 300 + spacer), logo_y + 80 + spacer + 300), machine2, (255,255,255), font=font2)
+    # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 - 90)/2
+    background.paste(os2, ((rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 115 + spacer + 300 ), os2)
+
 
 if len(sys.argv)==11:
     # A machine logo is 300 x 300, quick maths : width - rooster_offset - (3 * 300 ) = 910. So we need to split this in four segments : 155 , 300 , 300 , 155
