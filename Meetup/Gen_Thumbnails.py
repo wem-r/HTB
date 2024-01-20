@@ -32,7 +32,7 @@ def os_picture(os):
     elif os == "FreeBSD":
         return "freebsd.png"
     elif os == "OpenBSD":
-        return "openbsd.png" # to be implemented
+        return "openbsd.png"
     else:
         return "Error"
 #-------------------------------------------------------------
