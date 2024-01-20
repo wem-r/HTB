@@ -131,10 +131,10 @@ if len(sys.argv)==7:
     logo_y = 570 # (1440 - 300) / 2 = 570
     offset = int(755 - (w1 / 2) - spacer)
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
-    # 300 is the width of the box image, spacer is 50
-    draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
     # Add the OS logo, logo is 90x90 , so we have 525 + 300 and want it to be centered so we add (300 / 2 )- 64)
-    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 114 ), os1)
+    background.paste(os1, (int(rooster_offset + offset + 300 + spacer ), logo_y + 114 ), os1)
+    # 300 is the width of the box image, spacer is 50
+    draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
 
 
 if len(sys.argv)==9:
@@ -143,15 +143,15 @@ if len(sys.argv)==9:
     # Box 1 , logo_y will need to be tweak to achieve vertical centering (1440 - (300 + 50 + 300 ))/ 2 = 
     logo_y = 395
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
+    background.paste(os1, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 ), os1)
     # 300 is the width of the box image, spacer is 50
-    draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
-    background.paste(os1, (int(rooster_offset + offset + 300 + spacer + w1 + spacer), logo_y + 114 ), os1)
+    draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
     # Box 2, double the offset to achieve asymetry
     offset = offset * 2
     background.paste(im2, (int(rooster_offset + offset), logo_y + spacer + 300), im2)
+    background.paste(os2, (int(rooster_offset + offset + 300 + spacer ), logo_y + 114 + spacer + 300 ), os2)
     # 300 is the width of the box image, spacer is 50
-    draw.text((int(rooster_offset + offset + 300 + spacer), logo_y + 80 + spacer + 300), machine2, (255,255,255), font=font2)
-    background.paste(os2, (int(rooster_offset + offset + 300 + spacer + w2 + spacer), logo_y + 114 + spacer + 300 ), os2)
+    draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80 + spacer + 300), machine2, (255,255,255), font=font2)
 
 
 if len(sys.argv)==11:
