@@ -21,20 +21,6 @@ def get_machine_details(machine, machines):
     else:
         print(f"Error, machine {machine} not found in retired machines. EXITING")
         raise SystemExit
-
-def os_picture(os):
-    if os == "Windows":
-        return "win.png"
-    elif os == "Linux":
-        return "linux.png"
-    elif os == "Solaris":
-        return "solaris.png"
-    elif os == "FreeBSD":
-        return "freebsd.png"
-    elif os == "OpenBSD":
-        return "openbsd.png"
-    else:
-        return "Error"
 #-------------------------------------------------------------
 # Import HTB token
 with open('token.txt', 'r') as t:
@@ -105,17 +91,17 @@ if args.machine1 != None:
     machine1 = args.machine1
     w1, h1 = draw.textsize(machine1, font=font2)
     im1 = Image.open(requests.get(base_url + m1_avatar, headers=headers, stream=True).raw)
-    os1 = Image.open(os_picture(m1_os))
+    os1 = Image.open(m1_os.lower()+".png")
 if args.machine2 != None:
     machine2 = args.machine2
     w2, h2 = draw.textsize(machine2, font=font2)
     im2 = Image.open(requests.get(base_url + m2_avatar, headers=headers, stream=True).raw)
-    os2 = Image.open(os_picture(m2_os))
+    os2 = Image.open(m2_os.lower()+".png")
 if args.machine3 != None:
     machine3 = args.machine3
     w3, h3 = draw.textsize(machine3, font=font2)
     im3 = Image.open(requests.get(base_url + m3_avatar, headers=headers, stream=True).raw)
-    os3 = Image.open(os_picture(m3_os))
+    os3 = Image.open(m3_os.lower()+".png")
 
 # Notes for test 
 # Poison , FreeBSD, medium
