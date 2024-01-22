@@ -17,10 +17,10 @@ def get_machine_details(machine, machines):
     for i in range(0, len(machines)):
         if machines[i]['name'].lower() == machine.lower():
             print(f'Bingo : {machines[i]["name"]} avatar is {machines[i]["avatar"]}')
-            return machines[i]["avatar"], machines[i]["os"]
+            return 1, machines[i]["avatar"], machines[i]["os"]
     else:
-        print(f"Error, machine {machine} not found in retired machines. EXITING")
-        raise SystemExit
+        print(f"Error, machine {machine} not found in retired machines. Defaulting to Hex")
+        return 0, "greenhex.png", "Talk"
 #-------------------------------------------------------------
 # Import HTB token
 with open('token.txt', 'r') as t:
@@ -44,14 +44,14 @@ for i in range(1,5):
 #-------------------------------------------------------------
 # Implementation logic : check if machines exists first !
 if args.machine1 != None:
-    m1_avatar, m1_os = get_machine_details(args.machine1, machines)
+    m1_remote, m1_avatar, m1_os = get_machine_details(args.machine1, machines)
 
 if args.machine2 != None:
     if args.machine1 == None:
         print('[!] You defined machine 2 without a machine 1. EXITING')
         raise SystemExit
     else:
-        m2_avatar, m2_os = get_machine_details(args.machine2, machines)
+        m2_remote, m2_avatar, m2_os = get_machine_details(args.machine2, machines)
 
 if args.machine3 != None:
     if args.machine2 == None:
@@ -61,7 +61,7 @@ if args.machine3 != None:
         print('[!] You defined machine 3 without a machine 1. EXITING')
         raise SystemExit
     else:
-        m3_avatar, m3_os = get_machine_details(args.machine3, machines)
+        m3_remote, m3_avatar, m3_os = get_machine_details(args.machine3, machines)
 
 #-------------------------------------------------------------
 # Base Image & Meetup Title
@@ -89,17 +89,35 @@ draw.text((100, 1275), date, fill="white", font=font3)
 if args.machine1 != None:
     machine1 = args.machine1
     w1, h1 = draw.textsize(machine1, font=font2)
-    im1 = Image.open(requests.get(base_url + m1_avatar, headers=headers, stream=True).raw)
+    if m1_remote == 1:
+        im1 = Image.open(requests.get(base_url + m1_avatar, headers=headers, stream=True).raw)
+    else:
+        try:
+            im1 = Image.open(machine1 + ".png")
+        except:
+            im1 = Image.open("greenhex.png")
     os1 = Image.open(m1_os.lower()+".png")
 if args.machine2 != None:
     machine2 = args.machine2
     w2, h2 = draw.textsize(machine2, font=font2)
-    im2 = Image.open(requests.get(base_url + m2_avatar, headers=headers, stream=True).raw)
+    if m2_remote == 1:
+        im2 = Image.open(requests.get(base_url + m2_avatar, headers=headers, stream=True).raw)
+    else:
+        try:
+            im2 = Image.open(machine2 + ".png")
+        except:
+            im2 = Image.open("greenhex.png")
     os2 = Image.open(m2_os.lower()+".png")
 if args.machine3 != None:
     machine3 = args.machine3
     w3, h3 = draw.textsize(machine3, font=font2)
-    im3 = Image.open(requests.get(base_url + m3_avatar, headers=headers, stream=True).raw)
+    if m3_remote == 1:
+        im3 = Image.open(requests.get(base_url + m3_avatar, headers=headers, stream=True).raw)
+    else:
+        try:
+            im3 = Image.open(machine3 + ".png")
+        except:
+            im3 = Image.open("greenhex.png")
     os3 = Image.open(m3_os.lower()+".png")
 
 # Notes for test 
