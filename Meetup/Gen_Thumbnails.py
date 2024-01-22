@@ -67,7 +67,7 @@ if args.machine3 != None:
 # Base Image & Meetup Title
 width = 2560
 height = 1440
-background = Image.open('background-v3.png')
+background = Image.open('background-v6.png')
 draw = ImageDraw.Draw(background)
 
 font1 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 130) # Title
