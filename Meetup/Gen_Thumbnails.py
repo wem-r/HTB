@@ -68,22 +68,22 @@ if args.machine1 != None:
 # Base Image & Meetup Title
 width = 2560
 height = 1440
-background = Image.open('background-v2.png')
+background = Image.open('background-v3.png')
 draw = ImageDraw.Draw(background)
 
 font1 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 150) # Title
 font2 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 80) # Box Name
 font3 = ImageFont.truetype("Zeitung_Micro_Pro.ttf", 65) # Date
 
-meetup = f"Meetup HTB France {args.num_meetup}"
+meetup = f"Meetup {args.num_meetup}"
 w, h = draw.textsize(meetup, font=font1)
 # 500 pîxels from the left and 50 from the top, with font1 reduced to 150
-draw.text((500, 50), meetup, fill="white", font=font1)
+draw.text((width - (w + 700) , 50), meetup, fill="white", font=font1)
 
-date = f"{args.date_meetup}"
+date = f"HTB France - {args.date_meetup}"
 w1, h1 = draw.textsize(date, font=font3)
 # Text set in the remaining 2/3 of the image, to center in the "blank space" between the rooster and right
-draw.text(((width+765-w1)/2, 1275), date, fill="white", font=font3)
+draw.text((width - (w1 + 100), 1275), date, fill="white", font=font3)
 
 #-------------------------------------------------------------
 # Box
@@ -150,13 +150,13 @@ if len(sys.argv)==11:
     background.paste(os1, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 ), os1)
     draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80), machine1, (255,255,255), font=font2)
     # Box 2, triple the offset to achieve asymetry
-    offset = offset * 3
+    offset = offset + 300
     background.paste(im2, (int(rooster_offset + offset), logo_y + 250), im2)
     # 300 is the width of the box image, spacer is 50, 250 instead of 300 to reduce the spreading and pack a bit
     background.paste(os2, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 + 250 ), os2)
     draw.text((int(rooster_offset + offset + 300 + spacer + 64 + spacer), logo_y + 80 + 250), machine2, (255,255,255), font=font2)
     # Box 3, tweak the offset to achieve asymetry
-    offset = offset / 3
+    offset = offset + 300
     background.paste(im3, (int(rooster_offset + offset), logo_y + 500), im3)
     # 300 is the width of the box image, spacer is 50, 250 instead of 300 to reduce the spreading and pack a bit
     background.paste(os3, (int(rooster_offset + offset + 300 + spacer), logo_y + 114 + 500 ), os3)
