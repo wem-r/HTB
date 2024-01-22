@@ -45,7 +45,6 @@ for i in range(1,5):
 # Implementation logic : check if machines exists first !
 if args.machine1 != None:
     m1_avatar, m1_os = get_machine_details(args.machine1, machines)
-    date_offset = 0
 
 if args.machine2 != None:
     if args.machine1 == None:
@@ -53,7 +52,6 @@ if args.machine2 != None:
         raise SystemExit
     else:
         m2_avatar, m2_os = get_machine_details(args.machine2, machines)
-        date_offset = 150
 
 if args.machine3 != None:
     if args.machine2 == None:
@@ -64,7 +62,6 @@ if args.machine3 != None:
         raise SystemExit
     else:
         m3_avatar, m3_os = get_machine_details(args.machine3, machines)
-        date_offset = -200
 
 #-------------------------------------------------------------
 # Base Image & Meetup Title
@@ -85,7 +82,7 @@ draw.text((width - (w + 100) , 50), meetup, fill="white", font=font1)
 date = f"{args.date_meetup}"
 w1, h1 = draw.textsize(date, font=font3)
 # Text set in the remaining 2/3 of the image, to center in the "blank space" between the rooster and right
-draw.text((width - (w1 + 300 + date_offset), 1275), date, fill="white", font=font3)
+draw.text((100, 1275), date, fill="white", font=font3)
 
 #-------------------------------------------------------------
 # Box
