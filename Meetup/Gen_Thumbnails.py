@@ -159,7 +159,7 @@ if len(sys.argv)==9:
 
 if len(sys.argv)==11:
     spacer = 50
-    offset = int(400 - (w1 / 2) - spacer)
+    offset = int(700 - (w1 / 2) - spacer)
     # Box 1 , logo_y will need to be tweak to achieve vertical centering 
     logo_y = 370 # 1440 - ( 700) / 2 # 700 because we'll overlap logos vertically but on different x axis
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
