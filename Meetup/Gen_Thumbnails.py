@@ -91,6 +91,8 @@ if args.machine1 != None:
     w1, h1 = draw.textsize(machine1, font=font2)
     if m1_remote == 1:
         im1 = Image.open(requests.get(base_url + m1_avatar, headers=headers, stream=True).raw)
+        if im1.size != (300, 300):
+            im1 = im1.resize((300,300), Image.ANTIALIAS)
     else:
         try:
             im1 = Image.open(machine1 + ".png")
@@ -102,6 +104,8 @@ if args.machine2 != None:
     w2, h2 = draw.textsize(machine2, font=font2)
     if m2_remote == 1:
         im2 = Image.open(requests.get(base_url + m2_avatar, headers=headers, stream=True).raw)
+        if im2.size != (300, 300):
+            im2 = im2.resize((300,300), Image.ANTIALIAS)
     else:
         try:
             im2 = Image.open(machine2 + ".png")
@@ -113,6 +117,8 @@ if args.machine3 != None:
     w3, h3 = draw.textsize(machine3, font=font2)
     if m3_remote == 1:
         im3 = Image.open(requests.get(base_url + m3_avatar, headers=headers, stream=True).raw)
+        if im3.size != (300, 300):
+            im3 = im3.resize((300,300), Image.ANTIALIAS)
     else:
         try:
             im3 = Image.open(machine3 + ".png")
@@ -142,7 +148,7 @@ if len(sys.argv)==7:
 
 if len(sys.argv)==9:
     spacer = 50
-    offset = int(400 - (w1 / 2) - spacer)
+    offset = int(500 - (w1 / 2) - spacer)
     # Box 1 , logo_y will need to be tweak to achieve vertical centering (1440 - (300 + 50 + 300 ))/ 2 = 
     logo_y = 395
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
@@ -159,7 +165,7 @@ if len(sys.argv)==9:
 
 if len(sys.argv)==11:
     spacer = 50
-    offset = int(700 - (w1 / 2) - spacer)
+    offset = int(350 - (w1 / 2) - spacer)
     # Box 1 , logo_y will need to be tweak to achieve vertical centering 
     logo_y = 370 # 1440 - ( 700) / 2 # 700 because we'll overlap logos vertically but on different x axis
     background.paste(im1, (int(rooster_offset + offset), logo_y), im1)
