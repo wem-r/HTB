@@ -29,6 +29,7 @@ class Api:
         return machines
 
     def handle_machine_writeup(self, boxos, diff, name, id):
+
         if not os.path.exists(f"./writeups/{boxos}-{diff}-{name}-{id}.pdf"):
             print(f"[+] Downloading report for {name}")
             # Download writeup
@@ -42,11 +43,13 @@ class Api:
                     sleep(3)
                 elif wu.status_code == 404:
                     print(f"\033[0;31m[!] Report for {name} is not available on HTB API. SKIPPING \033[0m")
+                    o.close()
                     os.remove(f"./writeups/{boxos}-{diff}-{name}-{id}.pdf")
                 elif wu.status_code == 429:
                     print(f"\033[0;31m[!] Rate limit reached on HTB API. Waiting {int(wu.headers['retry-after'])+3} seconds \033[0m")
                     # Wait as instructed then relaunch
                     sleep(int(wu.headers['retry-after'])+3)
+                    o.close()
                     os.remove(f"./writeups/{boxos}-{diff}-{name}-{id}.pdf")
                     handle_machine_writeup(boxos,diff,name,id)
         else:
